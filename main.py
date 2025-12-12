@@ -11,6 +11,10 @@ import random
 import math
 from datetime import datetime
 import logging
+from dotenv import load_dotenv
+
+# Загружаем переменные окружения из .env файла
+load_dotenv()
 
 # Настройка логирования
 logging.basicConfig(
@@ -1389,9 +1393,20 @@ bot.start_time = time.time()
 
 # Запуск
 if __name__ == '__main__':
-    TOKEN = 'YOUR TOKEN HERE'
+    # Получаем токен из переменных окружения
+    TOKEN = os.getenv('DISCORD_BOT_TOKEN')
+    
+    if not TOKEN:
+        logger.error('❌ DISCORD_BOT_TOKEN не найден! Добавьте его в переменные окружения или в файл .env')
+        print('❌ ОШИБКА: DISCORD_BOT_TOKEN не найден!')
+        print('Пожалуйста, установите DISCORD_BOT_TOKEN в:')
+        print('  1. Переменные окружения системы, или')
+        print('  2. Файл .env в корне проекта')
+        exit(1)
     
     try:
+        logger.info('✓ Запуск бота...')
         bot.run(TOKEN)
     except Exception as e:
+        logger.error(f'❌ Ошибка запуска бота: {e}')
         print(f"❌ Ошибка: {e}")

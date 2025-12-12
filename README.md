@@ -51,3 +51,4 @@
 - Информация о сервере
 
 Ссылка на бота на яндекс диске  https://disk.yandex.ru/d/s21xHGdYKSMKOw
+Ссылка на плагин для использования музыки: https://github.com/FFmpeg/FFmpeg
